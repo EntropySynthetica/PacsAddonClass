@@ -1,0 +1,7 @@
+## Title: Hello Chat
+## Author: @LadyWinry
+## Description: Basic Addon to print a welcome message when you log in. 
+## Version: 1.0.0
+## APIVersion: 100031
+
+PacsHelloChat.lua

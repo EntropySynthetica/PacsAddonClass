@@ -1,4 +1,4 @@
--- Required Libraries
+-- Load Required Libraries
 local LAM2 = LibAddonMenu2
 
 -- Initialize our Namespace Table
@@ -6,56 +6,49 @@ PacsInCombat = {}
  
 PacsInCombat.name = "PacsInCombat"
 PacsInCombat.version = "1.0.0"
- 
--- Initialize our Variables
-function PacsInCombat:Initialize()
-  PacsInCombat.CreateSettingsWindow()
-  PacsInCombat.savedVariables = ZO_SavedVars:NewCharacterIdSettings("PacsInCombatSavedVariables", 1, nil, {})
 
-  enableDebug = PacsInCombat.savedVariables.enableDebug
-
-  self.inCombat = IsUnitInCombat("player")
-
-  EVENT_MANAGER:RegisterForEvent(self.name, EVENT_PLAYER_COMBAT_STATE, self.OnPlayerCombatState)
-end
-
+-- Detect if our Addon has loaded into Memory yet, if it has kick off our init function
 function PacsInCombat.OnAddOnLoaded(event, addonName)
   if addonName == PacsInCombat.name then
-    PacsInCombat:Initialize()
-
-    -- Debug output if we have that enabled. 
-    if enableDebug == true then
-      d("Pacrooti's In Combat Loaded.")
-    end
-  
+    PacsInCombat.Initialize()
   end
 end
 
-function PacsInCombat.OnPlayerCombatState(event, inCombat)
+-- This is were we run stuff that needs to happen when our addon first runs. 
+function PacsInCombat.Initialize()
+  -- Call the function that sets up our menu window.
+  PacsInCombat.CreateSettingsWindow()
 
-    if inCombat ~= PacsInCombat.inCombat then
-      PacsInCombat.inCombat = inCombat
-   
-      if inCombat then
-        if PacsInCombat.savedVariables.enableInCombat == true then
-          d("Entering combat.")
-        end
-      else
-        if PacsInCombat.savedVariables.enableInCombat == true then
-          d("Exiting combat.")
-        end
+  -- Load any saved variables we have into memory.
+  PacsInCombat.savedVariables = ZO_SavedVars:NewCharacterIdSettings("PacsInCombatSavedVariables", 1, nil, {})
+
+  -- Ask ESO to call the our Combat State function when there is a change in your combat status. 
+  EVENT_MANAGER:RegisterForEvent(PacsInCombat.name, EVENT_PLAYER_COMBAT_STATE, PacsInCombat.OnPlayerCombatState)
+end
+
+-- This function gets called when there is a change in your combat status. 
+function PacsInCombat.OnPlayerCombatState(event, CombatState)
+
+    if CombatState then
+      if PacsInCombat.savedVariables.enableInCombat == true then
+        d("Entering combat.")
       end
-   
+
+    else
+      if PacsInCombat.savedVariables.enableInCombat == true then
+        d("Exiting combat.")
+      end
+
     end
 end
 
---  Settings Menu Function via LibAddonMenu-2.0
+-- This function defines the layout of our menu via LibAddonMenu 2.0
 function PacsInCombat.CreateSettingsWindow()
   local panelData = {
       type = "panel",
       name = "Pacrooti's In Combat",
       displayName = "Pacrooti's In Combat",
-      author = "Erica Z",
+      author = "LadyWinry",
       version = PacsInCombat.version,
       slashCommand = "/pic",
       registerForRefresh = true,
@@ -63,7 +56,6 @@ function PacsInCombat.CreateSettingsWindow()
   }
 
   local cntrlOptionsPanel = LAM2:RegisterAddonPanel("PacsInCombat_settings", panelData)
-
 
   local optionsData = {
       [1] = {
@@ -77,19 +69,6 @@ function PacsInCombat.CreateSettingsWindow()
           default = true,
           getFunc = function() return PacsInCombat.savedVariables.enableInCombat end,
           setFunc = function(newValue) PacsInCombat.savedVariables.enableInCombat = newValue end,
-      },
-
-      [3] = {
-          type = "header",
-          name = "Debug Messages",
-      },
-
-      [4] = {
-          type = "checkbox",
-          name = "Enable Debug Messages",
-          default = false,
-          getFunc = function() return PacsInCombat.savedVariables.enableDebug end,
-          setFunc = function(newValue) PacsInCombat.savedVariables.enableDebug = newValue end,
       }
   }
 
@@ -97,4 +76,5 @@ function PacsInCombat.CreateSettingsWindow()
 
 end
 
+-- Tell ESO to let us know when our addon has loaded.
 EVENT_MANAGER:RegisterForEvent(PacsInCombat.name, EVENT_ADD_ON_LOADED, PacsInCombat.OnAddOnLoaded)

@@ -1,9 +1,9 @@
 ## Title: Pacrooti In Combat
-## Author: Winry.
+## Author: @LadyWinry
 ## Description: Basic Addon to tell me when you are entering and leaving combat. 
 ## Version: 1.0.0
 ## APIVersion: 100031
-## OptionalDependsOn: LibAddonMenu-2.0
+## DependsOn: LibAddonMenu-2.0
 ## SavedVariables: PacsInCombatSavedVariables
 
-PacInCombat.lua
+PacsInCombat.lua

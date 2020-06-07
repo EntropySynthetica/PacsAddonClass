@@ -1,0 +1,7 @@
+## Title: Hello Pacrooti
+## Author: @LadyWinry
+## Description: Simple addon to summon Pacrooti with a slash command. Credit to @Alulynn for the app name :)
+## Version: 1.0.0
+## APIVersion: 100031
+
+HelloPacrooti.lua

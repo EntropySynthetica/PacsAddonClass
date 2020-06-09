@@ -99,4 +99,4 @@ The name of any Addons or Libraries required by your application.  These must be
 `## SavedVariables:`
 Setting a name here will enable your addon to save any variables to disk.  The name you set will be a table name you can reference in your LUA code.  Variables get saved to disk only when logging out of the game, or when performing a /reloadui. 
 
-The last option to define in your manifest file would be the name of the LUA file your application will launch on load.  There is no need to put the /#/# before the filename. 
+The last option to define in your manifest file would be the name of the LUA file your application will launch on load.  There is no need to put the \#\# before the filename. 

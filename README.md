@@ -71,7 +71,7 @@ All ESO Addons are defined by a folder with at least a manifest file, and a LUA 
 
 At startup ESO will look inside each folder within the base ESO Addons folder for a manifest file.  The manifest file must have the same name as the folder and end with the extension .txt. This file defines the meta data for your addon such as the author name, version number, which ESO version the addon is compatible with, and any required dependencies. 
 
-## Arguments for the .txt file
+## Arguments for the manifest file
 
 Most of the addon arguments will start with \#\#
 

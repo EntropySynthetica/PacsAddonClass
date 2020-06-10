@@ -1,12 +1,12 @@
 # PacsAddonClass
-Code Examples from my Live Coding ESO addons class. 
+Code Examples from my Live Coding ESO addons class For Pacrooti's Hirelings. 
 
 ## Summary of addons in this class
-PacsHelloChat, A simple addon that displays a welcome message when you log in. 
+**PacsHelloChat**, A simple addon that displays a welcome message when you log in. 
 
-PacsinCombat, Shows a message in your chat box when you enter and leave combat. 
+**PacsinCombat**, Shows a message in your chat box when you enter and leave combat. 
 
-HelloPacrooti, Adds new slash commands to summon and dismiss Pacrooti
+**HelloPacrooti**, Adds new slash commands to summon and dismiss Pacrooti.  Credit to @Alulynn for the addon's name. 
 
 ## ESO Folder Paths
 
@@ -71,7 +71,7 @@ All ESO Addons are defined by a folder with at least a manifest file, and a LUA 
 
 At startup ESO will look inside each folder within the base ESO Addons folder for a manifest file.  The manifest file must have the same name as the folder and end with the extension .txt. This file defines the meta data for your addon such as the author name, version number, which ESO version the addon is compatible with, and any required dependencies. 
 
-## Arguments for the manifest file
+### Arguments for the manifest file
 
 Most of the addon arguments will start with \#\#
 
@@ -100,3 +100,17 @@ The name of any Addons or Libraries required by your application.  These must be
 Setting a name here will enable your addon to save any variables to disk.  The name you set will be a table name you can reference in your LUA code.  Variables get saved to disk only when logging out of the game, or when performing a /reloadui. 
 
 The last option to define in your manifest file would be the name of the LUA file your application will launch on load.  There is no need to put the \#\# before the filename. 
+
+More details on Manifest file format can be found here: https://wiki.esoui.com/Addon_manifest_(.txt)_format
+
+## Resources
+
+API Documentation: https://wiki.esoui.com/API
+
+ESOUI Wiki: https://wiki.esoui.com/Main_Page
+
+ESOUI Addon Developer forums: https://www.esoui.com/forums/forumdisplay.php?f=163
+
+ESO Official Addon forums: https://forums.elderscrollsonline.com/en/categories/add-ons-and-ui-mods
+
+Docs for LibAddonMenu: https://www.esoui.com/downloads/info7-LibAddonMenu.html
